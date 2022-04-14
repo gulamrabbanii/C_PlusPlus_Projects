@@ -1,0 +1,14 @@
+
+Customer ID: 123
+Name: Rabbani
+Age: 22
+Mobile Number: 123456789
+AddressMijar
+Gender: M
+
+Customer ID: 123
+Name: Rabbani
+Age: 25
+Mobile Number: 123456789
+AddressMijar
+Gender: M
