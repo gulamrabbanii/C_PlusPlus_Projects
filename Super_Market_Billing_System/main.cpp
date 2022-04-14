@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <iomanip>
+#include <windows.h>
 
 using namespace std;
 
@@ -31,6 +33,8 @@ m:
     cout << "\t\t\t\t|         Super Market Main Menu            |\n";
     cout << "\t\t\t\t|                                           |\n";
     cout << "\t\t\t\t|-------------------------------------------|\n\n";
+    cout << "\t\t\t\t   To Add New Product, Please login to Administrator     \n"
+         << endl;
     cout << "\t\t\t\t   1) Administrator     \n";
     cout << endl;
     cout << "\t\t\t\t   2) Buyer             \n";
@@ -39,10 +43,13 @@ m:
     cout << endl;
     cout << "\t\t\t\t Please select:    ";
     cin >> choice;
+    system("CLS");
 
     switch (choice)
     {
     case 1:
+        cout << "\t\t\t\tHint:  username: user@market.com   password: pass     \n"
+             << endl;
         cout << "\t\t\t\t Please Login" << endl;
         cout << "\t\t\t\t Enter Email:  ";
         cin >> email;
@@ -50,10 +57,15 @@ m:
         cin >> passwd;
         if (email == "user@market.com" && passwd == "pass")
         {
+            system("CLS");
             administrator();
         }
         else
+        {
             cout << "Invalid email/password" << endl;
+            system("CLS");
+            menu();
+        }
         break;
     case 2:
         buyer();
@@ -79,6 +91,7 @@ m:
     cout << "\n\t\t\t|      4) Back to main menu    |";
     cout << "\n\t\t\t       Enter your choice:  ";
     cin >> choice;
+    system("CLS");
 
     switch (choice)
     {
@@ -110,6 +123,7 @@ m:
     cout << "\n\t\t\t       2) Go back          ";
     cout << "\n\t\t\t       Enter your choice:  ";
     cin >> choice;
+    system("CLS");
 
     switch (choice)
     {
@@ -143,6 +157,7 @@ m:
     std::cout << "\t\tDiscount on the product:    ";
     cin >> dis;
     data.open("database.txt", ios::in);
+    system("CLS");
     if (!data)
     {
         data.open("database.txt", ios::out);
@@ -162,6 +177,7 @@ m:
     }
     if (token >= 1)
     {
+        system("CLS");
         cout << "Code already exist. Please Enter unique code" << endl;
         goto m;
     }
@@ -171,6 +187,7 @@ m:
         data << p_code << "        " << p_name << "        " << price << "        " << dis << endl;
         data.close();
     }
+    system("CLS");
     cout << "\n\t\tRecord inserted" << endl;
 }
 
@@ -184,10 +201,13 @@ void Shopping::edit()
     cout << "\n\t\t\tModify the record";
     cout << "\n\t\t\tProduct code: ";
     cin >> p_key;
+    system("CLS");
 
     data.open("database.txt", ios::in);
     if (!data)
+    {
         cout << "\n\t\t\tFile does not exist!" << endl;
+    }
     else
     {
         data1.open("database1.txt", ios::app | ios::out);
@@ -205,6 +225,7 @@ void Shopping::edit()
                 cout << "\t\t\tDiscount:    ";
                 cin >> d;
                 data1 << c << "        " << n << "        " << p << "        " << d << endl;
+                system("CLS");
                 cout << "\n\t\t\tRecord edited   " << endl;
                 token++;
             }
@@ -221,7 +242,9 @@ void Shopping::edit()
         rename("database1.txt", "database.txt");
 
         if (token == 0)
+        {
             cout << "Sorry! Record could not found." << endl;
+        }
     }
 }
 
@@ -234,7 +257,9 @@ void Shopping::rem()
     cin >> p_key;
     data.open("database.txt", ios::in);
     if (!data)
+    {
         cout << "File does not exist" << endl;
+    }
     else
     {
         data1.open("database1.txt", ios::app | ios::out);
@@ -250,12 +275,16 @@ void Shopping::rem()
                 data1 << p_code << "        " << p_name << "        " << price << "        " << dis;
             data >> p_code >> p_name >> price >> dis;
         }
+        Sleep(2900);
+        system("CLS");
         data.close();
         data1.close();
         remove("database.txt");
         rename("database1.txt", "database.txt");
         if (token == 0)
+        {
             cout << "\n\t\t\t Sorry! Record could not found" << endl;
+        }
     }
 }
 
@@ -273,6 +302,7 @@ void Shopping::list()
     {
         cout << "\t|\t" << p_code << "\t\t" << p_name << "\t\t\t" << price << "\t\t" << dis << "\t |";
         data >> p_code >> p_name >> price >> dis;
+        cout << endl;
     }
     data.close();
 }
@@ -294,9 +324,9 @@ m:
     {
         data.close();
         list();
-        cout << "\n\t|---------------------------------------------|" << endl;
-        cout << "\t|         Please Place the order              |" << endl;
-        cout << "\t|---------------------------------------------|" << endl;
+        cout << "\n\t*---------------------------------------------*" << endl;
+        cout << "\t*         Please Place the order              *" << endl;
+        cout << "\t*---------------------------------------------*" << endl;
         do
         {
             cout << "\n\t\tEnter Product Code: ";
@@ -307,6 +337,7 @@ m:
             {
                 if (arr_code[c] == arr_code[i])
                 {
+                    system("CLS");
                     cout << "\t\tDuplicate Product Code. Please Try again." << endl;
                     goto m;
                 }
@@ -314,7 +345,9 @@ m:
             c++;
             cout << "\n\t\tDo you want to buy another product? Press 'y' or 'n':    ";
             cin >> choice;
+
         } while (choice == 'y');
+        system("CLS");
         cout << "\n\n\t\t______________________________________RECEIPT______________________________________" << endl;
         cout << "\t\tProduct_No.\tProduct_Name\tQauntity\tPrice\tAmount\tAmount_with_discount" << endl;
 
