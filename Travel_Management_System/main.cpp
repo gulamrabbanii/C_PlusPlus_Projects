@@ -47,7 +47,7 @@ public:
             std::cout << "Enter Gender: ";
             std::cin >> gender;
         }
-        out << "\nCustomer ID: " << cusID << "\nName: " << name << "\nAge: " << age << "\nMobile Number: " << mobileNo << "\nAddress" << address << "\nGender: " << gender << std::endl;
+        out << "\nCustomer ID: " << cusID << "\nName: " << name << "\nAge: " << age << "\nMobile Number: " << mobileNo << "\nAddress: " << address << "\nGender: " << gender << std::endl;
         out.close();
 
         std::cout << "\nSAVED \nNOTE: We save your details record for future purposes\n"
